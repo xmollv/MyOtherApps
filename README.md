@@ -5,10 +5,10 @@ A Swift package that fetches all the apps of an App Store developer from the iTu
 - Fetches every app of a developer with a single request to the public iTunes lookup API. No API key needed.
 - The app it runs in is left out automatically. Hide more apps by identifier, and pin the most important ones to the top. The rest are sorted by their last update, newest first.
 - Caches the last successful response on disk. The cached apps are always shown first, then replaced with the network result.
-- A drop-in `Section` with one row per app: icon, name, version and last update date, and a **View** button that opens the App Store page without leaving your app.
+- A drop-in `Section` with one row per app: icon, name, version and last update date, and a **View** button that opens the App Store page without leaving your app on iOS, and opens its App Store link on macOS.
 - Translated into every language iOS supports, and adapts to Dynamic Type and VoiceOver.
 
-Requires iOS 26 or later.
+Requires iOS 26 or macOS 26 or later.
 
 ## Installation
 

@@ -6,7 +6,8 @@ let package = Package(
     name: "MyOtherApps",
     defaultLocalization: "en",
     platforms: [
-        .iOS(.v26)
+        .iOS(.v26),
+        .macOS(.v26)
     ],
     products: [
         .library(name: "MyOtherApps", targets: ["MyOtherApps"])

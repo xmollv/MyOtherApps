@@ -3,7 +3,8 @@ import SwiftUI
 /// A list section with one row per app of a developer, meant for a settings screen.
 ///
 /// Each row shows the app icon, its name, its current version with the date it was released, and a
-/// "View" button that presents the App Store page of the app without leaving your app.
+/// "View" button that presents the App Store page of the app without leaving your app. On macOS, the button opens
+/// its App Store link instead.
 ///
 /// The section shows the cached apps right away and refreshes them from the network when it appears.
 /// Whenever any of its parameters changes, it shows the cached apps for the new parameters and fetches again.

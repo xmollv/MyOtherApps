@@ -9,7 +9,11 @@ struct StoreAppRow: View {
 
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ScaledMetric(relativeTo: .body) private var scaledIconSize = 44
+    #if os(iOS)
     @State private var presentedAppID: Int?
+    #else
+    @Environment(\.openURL) private var openURL
+    #endif
 
     private var isAccessibilitySize: Bool {
         dynamicTypeSize.isAccessibilitySize
@@ -58,12 +62,19 @@ struct StoreAppRow: View {
         .accessibilityHint(Text("Opens the App Store page", bundle: .module))
         .accessibilityAddTraits(.isButton)
         .accessibilityAction(.default, presentAppStorePage)
+        #if os(iOS)
         .background {
             StoreProductPresenter(appID: $presentedAppID)
         }
+        #endif
     }
 
+    /// Presents the App Store page inside the app on iOS. On macOS, where that isn't available, opens the App Store.
     private func presentAppStorePage() {
+        #if os(iOS)
         presentedAppID = app.id
+        #else
+        openURL(app.storeURL)
+        #endif
     }
 }
