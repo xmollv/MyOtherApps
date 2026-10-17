@@ -16,11 +16,11 @@ Add the package to your project in Xcode with **File › Add Package Dependencie
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/xmollv/myotherapps.git", branch: "main")
+    .package(url: "https://github.com/xmollv/MyOtherApps.git", branch: "main")
 ],
 targets: [
     .target(name: "MyApp", dependencies: [
-        .product(name: "MyOtherApps", package: "myotherapps")
+        .product(name: "MyOtherApps", package: "MyOtherApps")
     ])
 ]
 ```
