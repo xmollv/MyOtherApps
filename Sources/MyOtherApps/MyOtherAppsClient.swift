@@ -9,9 +9,10 @@ public enum MyOtherAppsError: Error, Sendable {
 /// Fetches all the apps of a developer from the iTunes API and caches the response on disk.
 ///
 /// Use the client directly when you want to render the apps with your own UI. The returned apps are
-/// already filtered and sorted following ``hiddenAppIDs`` and ``order``:
+/// already filtered and sorted:
 ///
-/// 1. Apps whose identifier is in ``hiddenAppIDs`` are removed.
+/// 1. The app the client runs in, matched by bundle identifier, and apps whose identifier is in
+///    ``hiddenAppIDs`` are removed.
 /// 2. Apps whose identifier is in ``order`` come first, in that order.
 /// 3. The rest follow, sorted by ``StoreApp/currentVersionReleaseDate``, newest first.
 ///
@@ -41,7 +42,8 @@ public struct MyOtherAppsClient: Sendable, Equatable {
     ///
     /// - Parameters:
     ///   - developerID: The App Store identifier of the developer.
-    ///   - hiddenAppIDs: Identifiers of the apps that are never returned, such as the app the client runs in.
+    ///   - hiddenAppIDs: Identifiers of the apps that are never returned. The app the client runs in is
+    ///     never returned either, without listing it here.
     ///   - order: Identifiers of the apps to show first, from most to least important. Apps not listed
     ///     here are sorted by the release date of their current version, newest first.
     ///   - country: The two-letter code of the App Store storefront to fetch from. Defaults to the
@@ -116,7 +118,8 @@ public struct MyOtherAppsClient: Sendable, Equatable {
     }
 
     private func arranged(_ apps: [StoreApp]) -> [StoreApp] {
-        let visible = apps.filter { !hiddenAppIDs.contains($0.id) }
+        let runningBundleID = Bundle.main.bundleIdentifier
+        let visible = apps.filter { !hiddenAppIDs.contains($0.id) && $0.bundleID != runningBundleID }
         let ordered = order.compactMap { id in visible.first { $0.id == id } }
         let rest = visible
             .filter { !order.contains($0.id) }

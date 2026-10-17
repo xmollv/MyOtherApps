@@ -27,7 +27,8 @@ public struct MyOtherAppsSection: View {
     ///   - title: The header of the section, looked up in your app's main bundle. Defaults to
     ///     "More apps by" followed by the developer name.
     ///   - developerID: The App Store identifier of the developer.
-    ///   - hiddenAppIDs: Identifiers of the apps that are never shown, such as the app the section is in.
+    ///   - hiddenAppIDs: Identifiers of the apps that are never shown. The app the section is in is never
+    ///     shown either, without listing it here.
     ///   - order: Identifiers of the apps to show first, from most to least important. Apps not listed
     ///     here are sorted by the release date of their current version, newest first.
     ///   - country: The two-letter code of the App Store storefront to fetch from. Defaults to the

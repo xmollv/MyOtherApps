@@ -3,7 +3,7 @@
 A Swift package that fetches all the apps of an App Store developer from the iTunes API, and renders them as a SwiftUI section for your settings screen.
 
 - Fetches every app of a developer with a single request to the public iTunes lookup API. No API key needed.
-- Hide apps by identifier, and pin the most important ones to the top. The rest are sorted by their last update, newest first.
+- The app it runs in is left out automatically. Hide more apps by identifier, and pin the most important ones to the top. The rest are sorted by their last update, newest first.
 - Caches the last successful response on disk. The cached apps are always shown first, then replaced with the network result.
 - A drop-in `Section` with one row per app: icon, name, version and last update date, and a **View** button that opens the App Store page without leaving your app.
 - Translated into every language iOS supports, and adapts to Dynamic Type and VoiceOver.
@@ -44,7 +44,7 @@ struct SettingsView: View {
         Form {
             MyOtherAppsSection(
                 developerID: 1355340766,
-                // Don't show the app the user is already in.
+                // Don't show Llitgi. The app this runs in is never shown.
                 hiddenAppIDs: [1355340767],
                 // Show Later first. The rest follow, most recently updated first.
                 order: [1507396839]
@@ -165,7 +165,7 @@ init(
 | Parameter | Description |
 | --- | --- |
 | `developerID` | The App Store identifier of the developer. |
-| `hiddenAppIDs` | Identifiers of the apps that are never returned. |
+| `hiddenAppIDs` | Identifiers of the apps that are never returned. The app the client runs in is never returned either: it's matched by `Bundle.main.bundleIdentifier`, so you don't need to list it. |
 | `order` | Identifiers of the apps to return first, from most to least important. Apps not listed are sorted by `currentVersionReleaseDate`, newest first. |
 | `country` | The two-letter code of the App Store storefront to fetch from. App names are localized for this storefront. Defaults to the region of the current locale. |
 | `session` | The URL session used for network requests. |
