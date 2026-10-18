@@ -826,277 +826,277 @@
         }
       }
     },
-    "Version %@, updated %@": {
-      "comment": "VoiceOver value of an app row. The first %@ is the app version, the second one is the date of the last update.",
+    "Updated %@": {
+      "comment": "Subtitle and VoiceOver value of an app row. %@ is the localized time since the last update, such as \"2 days ago\".",
       "localizations": {
         "ar": {
           "stringUnit": {
             "state": "translated",
-            "value": "الإصدار %1$@، تم التحديث في %2$@"
+            "value": "تم التحديث %@"
           }
         },
         "bn": {
           "stringUnit": {
             "state": "translated",
-            "value": "সংস্করণ %1$@, আপডেট হয়েছে %2$@"
+            "value": "আপডেট হয়েছে %@"
           }
         },
         "ca": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versió %1$@, actualitzada el %2$@"
+            "value": "Actualitzada %@"
           }
         },
         "cs": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verze %1$@, aktualizováno %2$@"
+            "value": "Aktualizováno %@"
           }
         },
         "da": {
           "stringUnit": {
             "state": "translated",
-            "value": "Version %1$@, opdateret %2$@"
+            "value": "Opdateret %@"
           }
         },
         "de": {
           "stringUnit": {
             "state": "translated",
-            "value": "Version %1$@, aktualisiert am %2$@"
+            "value": "Aktualisiert %@"
           }
         },
         "el": {
           "stringUnit": {
             "state": "translated",
-            "value": "Έκδοση %1$@, ενημερώθηκε %2$@"
+            "value": "Ενημερώθηκε %@"
           }
         },
         "es": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versión %1$@, actualizada el %2$@"
+            "value": "Actualizada %@"
           }
         },
         "fi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versio %1$@, päivitetty %2$@"
+            "value": "Päivitetty %@"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Version %1$@, mise à jour le %2$@"
+            "value": "Mise à jour %@"
           }
         },
         "gu": {
           "stringUnit": {
             "state": "translated",
-            "value": "સંસ્કરણ %1$@, %2$@ ના રોજ અપડેટ કર્યું"
+            "value": "અપડેટ કર્યું %@"
           }
         },
         "he": {
           "stringUnit": {
             "state": "translated",
-            "value": "גרסה %1$@, עודכן ב-%2$@"
+            "value": "עודכן %@"
           }
         },
         "hi": {
           "stringUnit": {
             "state": "translated",
-            "value": "संस्करण %1$@, %2$@ को अपडेट किया गया"
+            "value": "अपडेट किया गया %@"
           }
         },
         "hr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verzija %1$@, ažurirano %2$@"
+            "value": "Ažurirano %@"
           }
         },
         "hu": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ verzió, frissítve: %2$@"
+            "value": "Frissítve: %@"
           }
         },
         "id": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versi %1$@, diperbarui %2$@"
+            "value": "Diperbarui %@"
           }
         },
         "it": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versione %1$@, aggiornata il %2$@"
+            "value": "Aggiornata %@"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "translated",
-            "value": "バージョン%1$@、%2$@にアップデート"
+            "value": "アップデート：%@"
           }
         },
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Нұсқа %1$@, жаңартылды: %2$@"
+            "value": "Жаңартылды: %@"
           }
         },
         "kn": {
           "stringUnit": {
             "state": "translated",
-            "value": "ಆವೃತ್ತಿ %1$@, %2$@ ರಂದು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ"
+            "value": "ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗಿದೆ %@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "버전 %1$@, %2$@에 업데이트됨"
+            "value": "업데이트: %@"
           }
         },
         "ml": {
           "stringUnit": {
             "state": "translated",
-            "value": "പതിപ്പ് %1$@, %2$@-ന് അപ്‌ഡേറ്റ് ചെയ്തു"
+            "value": "അപ്‌ഡേറ്റ് ചെയ്‌തത് %@"
           }
         },
         "mr": {
           "stringUnit": {
             "state": "translated",
-            "value": "आवृत्ती %1$@, %2$@ रोजी अपडेट केले"
+            "value": "अपडेट केले %@"
           }
         },
         "ms": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versi %1$@, dikemas kini %2$@"
+            "value": "Dikemas kini %@"
           }
         },
         "nb": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versjon %1$@, oppdatert %2$@"
+            "value": "Oppdatert %@"
           }
         },
         "nl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versie %1$@, bijgewerkt op %2$@"
+            "value": "Bijgewerkt %@"
           }
         },
         "or": {
           "stringUnit": {
             "state": "translated",
-            "value": "ସଂସ୍କରଣ %1$@, %2$@ ରେ ଅପଡେଟ ହୋଇଛି"
+            "value": "ଅପଡେଟ୍ ହୋଇଛି %@"
           }
         },
         "pa": {
           "stringUnit": {
             "state": "translated",
-            "value": "ਸੰਸਕਰਨ %1$@, %2$@ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ"
+            "value": "ਅੱਪਡੇਟ ਕੀਤਾ %@"
           }
         },
         "pl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Wersja %1$@, zaktualizowano %2$@"
+            "value": "Zaktualizowano %@"
           }
         },
         "pt-BR": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versão %1$@, atualizado em %2$@"
+            "value": "Atualizada %@"
           }
         },
         "pt-PT": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versão %1$@, atualizada a %2$@"
+            "value": "Atualizada %@"
           }
         },
         "ro": {
           "stringUnit": {
             "state": "translated",
-            "value": "Versiunea %1$@, actualizată pe %2$@"
+            "value": "Actualizată %@"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "translated",
-            "value": "Версия %1$@, обновлено %2$@"
+            "value": "Обновлено %@"
           }
         },
         "sk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Verzia %1$@, aktualizované %2$@"
+            "value": "Aktualizované %@"
           }
         },
         "sl": {
           "stringUnit": {
             "state": "translated",
-            "value": "Različica %1$@, posodobljeno %2$@"
+            "value": "Posodobljeno %@"
           }
         },
         "sv": {
           "stringUnit": {
             "state": "translated",
-            "value": "Version %1$@, uppdaterad %2$@"
+            "value": "Uppdaterad %@"
           }
         },
         "ta": {
           "stringUnit": {
             "state": "translated",
-            "value": "பதிப்பு %1$@, %2$@ அன்று புதுப்பிக்கப்பட்டது"
+            "value": "புதுப்பிக்கப்பட்டது %@"
           }
         },
         "te": {
           "stringUnit": {
             "state": "translated",
-            "value": "వెర్షన్ %1$@, %2$@న అప్‌డేట్ చేయబడింది"
+            "value": "అప్‌డేట్ చేయబడింది %@"
           }
         },
         "th": {
           "stringUnit": {
             "state": "translated",
-            "value": "เวอร์ชั่น %1$@ อัปเดตเมื่อ %2$@"
+            "value": "อัปเดต %@"
           }
         },
         "tr": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sürüm %1$@, %2$@ tarihinde güncellendi"
+            "value": "Güncellendi: %@"
           }
         },
         "uk": {
           "stringUnit": {
             "state": "translated",
-            "value": "Версія %1$@, оновлено %2$@"
+            "value": "Оновлено %@"
           }
         },
         "ur": {
           "stringUnit": {
             "state": "translated",
-            "value": "ورژن %1$@، %2$@ کو اپ ڈیٹ کیا گیا"
+            "value": "اپ ڈیٹ ہوا %@"
           }
         },
         "vi": {
           "stringUnit": {
             "state": "translated",
-            "value": "Phiên bản %1$@, cập nhật ngày %2$@"
+            "value": "Đã cập nhật %@"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "版本 %1$@，更新于 %2$@"
+            "value": "更新于%@"
           }
         },
         "zh-Hant": {
           "stringUnit": {
             "state": "translated",
-            "value": "版本 %1$@，更新於 %2$@"
+            "value": "更新於 %@"
           }
         }
       }

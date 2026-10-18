@@ -1,6 +1,6 @@
 import SwiftUI
 
-/// A row with the icon, name, version and update date of an app, and a button that opens its App Store page.
+/// A row with the icon, name and time since the last update of an app, and a button that opens its App Store page.
 ///
 /// The text wraps instead of truncating, and at accessibility text sizes the row stacks its content vertically. VoiceOver
 /// reads the row as a single button that opens the App Store page.
@@ -23,6 +23,10 @@ struct StoreAppRow: View {
         min(scaledIconSize, 88)
     }
 
+    private var lastUpdated: Text {
+        Text("Updated \(app.currentVersionReleaseDate, format: .relative(presentation: .numeric, unitsStyle: .wide))", bundle: .module)
+    }
+
     var body: some View {
         let layout = isAccessibilitySize
             ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
@@ -40,7 +44,7 @@ struct StoreAppRow: View {
 
             VStack(alignment: .leading, spacing: 2) {
                 Text(app.name)
-                Text(verbatim: "\(app.version) · \(app.currentVersionReleaseDate.formatted(.dateTime.day().month().year()))")
+                lastUpdated
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
@@ -58,7 +62,7 @@ struct StoreAppRow: View {
         }
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(app.name)
-        .accessibilityValue(Text("Version \(app.version), updated \(app.currentVersionReleaseDate, format: .dateTime.day().month(.wide).year())", bundle: .module))
+        .accessibilityValue(lastUpdated)
         .accessibilityHint(Text("Opens the App Store page", bundle: .module))
         .accessibilityAddTraits(.isButton)
         .accessibilityAction(.default, presentAppStorePage)

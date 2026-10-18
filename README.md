@@ -5,7 +5,7 @@ A Swift package that fetches all the apps of an App Store developer from the iTu
 - Fetches every app of a developer with a single request to the public iTunes lookup API. No API key needed.
 - The app it runs in is left out automatically. Hide more apps by identifier, and pin the most important ones to the top. The rest are sorted by their last update, newest first. Rename any app with your own title.
 - Caches the last successful response on disk. The cached apps are always shown first, then replaced with the network result.
-- A drop-in `Section` with one row per app: icon, name, version and last update date, and a **View** button that opens the App Store page without leaving your app on iOS, and opens its App Store link on macOS.
+- A drop-in `Section` with one row per app: icon, name, how long ago it was last updated (such as "Updated 2 days ago"), and a **View** button that opens the App Store page without leaving your app on iOS, and opens its App Store link on macOS.
 - Translated into every language iOS supports, and adapts to Dynamic Type and VoiceOver.
 
 Requires iOS 26 or macOS 26 or later.
@@ -65,11 +65,11 @@ MyOtherAppsSection("Our Other Apps", developerID: 1355340766)
 ### Accessibility
 
 - Rows adapt to Dynamic Type. The text wraps instead of truncating, and at accessibility text sizes the row stacks the icon, text and **View** button vertically. The icon scales with the text, up to twice its regular size.
-- VoiceOver reads each row as a single button: the app name, then its version and last update date. Activating it opens the App Store page.
+- VoiceOver reads each row as a single button: the app name, then how long ago it was last updated. Activating it opens the App Store page.
 
 ### Localization
 
-The default header, the **View** button and the VoiceOver strings ship translated into every language iOS supports: Arabic, Bangla, Catalan, Chinese (Simplified and Traditional), Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Kannada, Kazakh, Korean, Malay, Malayalam, Marathi, Norwegian, Odia, Polish, Portuguese (Brazil and Portugal), Punjabi, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Tamil, Telugu, Thai, Turkish, Ukrainian, Urdu and Vietnamese. Dates are formatted for the user's locale.
+The default header, the row subtitle, the **View** button and the VoiceOver strings ship translated into every language iOS supports: Arabic, Bangla, Catalan, Chinese (Simplified and Traditional), Croatian, Czech, Danish, Dutch, English, Finnish, French, German, Greek, Gujarati, Hebrew, Hindi, Hungarian, Indonesian, Italian, Japanese, Kannada, Kazakh, Korean, Malay, Malayalam, Marathi, Norwegian, Odia, Polish, Portuguese (Brazil and Portugal), Punjabi, Romanian, Russian, Slovak, Slovenian, Spanish, Swedish, Tamil, Telugu, Thai, Turkish, Ukrainian, Urdu and Vietnamese. Relative times are formatted for the user's locale.
 
 iOS shows your whole app in one language, chosen among the languages **your app** supports. So the section is only translated into the languages your app is localized in. An app that only ships English shows the section in English, even on a device set to German.
 
