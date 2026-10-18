@@ -37,18 +37,20 @@ public final class MyOtherAppsModel {
 
     /// Creates a model with a client configured with the given parameters.
     ///
-    /// See ``MyOtherAppsClient/init(developerID:hiddenAppIDs:order:country:session:)`` for the
+    /// See ``MyOtherAppsClient/init(developerID:hiddenAppIDs:order:names:country:session:)`` for the
     /// meaning of each parameter.
     public convenience init(
         developerID: Int,
         hiddenAppIDs: Set<Int> = [],
         order: [Int] = [],
+        names: [Int: String] = [:],
         country: String = Locale.current.region?.identifier ?? "us"
     ) {
         self.init(client: MyOtherAppsClient(
             developerID: developerID,
             hiddenAppIDs: hiddenAppIDs,
             order: order,
+            names: names,
             country: country
         ))
     }

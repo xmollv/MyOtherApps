@@ -15,6 +15,7 @@ public enum MyOtherAppsError: Error, Sendable {
 ///    ``hiddenAppIDs`` are removed.
 /// 2. Apps whose identifier is in ``order`` come first, in that order.
 /// 3. The rest follow, sorted by ``StoreApp/currentVersionReleaseDate``, newest first.
+/// 4. Apps whose identifier is in ``names`` take that name instead of their App Store one.
 ///
 /// Two clients are equal when they have the same configuration, so you can use a client as the
 /// identifier of a `.task(id:)` to fetch again whenever the configuration changes.
@@ -32,6 +33,8 @@ public struct MyOtherAppsClient: Sendable, Equatable {
     public let hiddenAppIDs: Set<Int>
     /// Identifiers of the apps to show first, from most to least important.
     public let order: [Int]
+    /// Names to show instead of the App Store ones, keyed by app identifier.
+    public let names: [Int: String]
     /// The two-letter code of the App Store storefront to fetch from, such as `"us"` or `"es"`.
     public let country: String
 
@@ -46,6 +49,7 @@ public struct MyOtherAppsClient: Sendable, Equatable {
     ///     never returned either, without listing it here.
     ///   - order: Identifiers of the apps to show first, from most to least important. Apps not listed
     ///     here are sorted by the release date of their current version, newest first.
+    ///   - names: Names to show instead of the App Store ones, keyed by app identifier.
     ///   - country: The two-letter code of the App Store storefront to fetch from. Defaults to the
     ///     region of the current locale. App names are localized for this storefront.
     ///   - session: The URL session used for network requests.
@@ -53,12 +57,14 @@ public struct MyOtherAppsClient: Sendable, Equatable {
         developerID: Int,
         hiddenAppIDs: Set<Int> = [],
         order: [Int] = [],
+        names: [Int: String] = [:],
         country: String = Locale.current.region?.identifier ?? "us",
         session: URLSession = .shared
     ) {
         self.developerID = developerID
         self.hiddenAppIDs = hiddenAppIDs
         self.order = order
+        self.names = names
         self.country = country.lowercased()
         self.session = session
         self.cache = AppsCache(developerID: developerID, country: self.country)
@@ -124,6 +130,22 @@ public struct MyOtherAppsClient: Sendable, Equatable {
         let rest = visible
             .filter { !order.contains($0.id) }
             .sorted { $0.currentVersionReleaseDate > $1.currentVersionReleaseDate }
-        return ordered + rest
+        return (ordered + rest).map(renamed)
+    }
+
+    private func renamed(_ app: StoreApp) -> StoreApp {
+        guard let name = names[app.id] else { return app }
+        return StoreApp(
+            id: app.id,
+            name: name,
+            bundleID: app.bundleID,
+            developerName: app.developerName,
+            version: app.version,
+            genre: app.genre,
+            artworkURL: app.artworkURL,
+            storeURL: app.storeURL,
+            releaseDate: app.releaseDate,
+            currentVersionReleaseDate: app.currentVersionReleaseDate
+        )
     }
 }

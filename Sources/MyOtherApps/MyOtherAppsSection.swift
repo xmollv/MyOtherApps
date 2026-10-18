@@ -32,6 +32,7 @@ public struct MyOtherAppsSection: View {
     ///     shown either, without listing it here.
     ///   - order: Identifiers of the apps to show first, from most to least important. Apps not listed
     ///     here are sorted by the release date of their current version, newest first.
+    ///   - names: Names to show instead of the App Store ones, keyed by app identifier.
     ///   - country: The two-letter code of the App Store storefront to fetch from. Defaults to the
     ///     region of the current locale.
     public init(
@@ -39,12 +40,14 @@ public struct MyOtherAppsSection: View {
         developerID: Int,
         hiddenAppIDs: Set<Int> = [],
         order: [Int] = [],
+        names: [Int: String] = [:],
         country: String = Locale.current.region?.identifier ?? "us"
     ) {
         let client = MyOtherAppsClient(
             developerID: developerID,
             hiddenAppIDs: hiddenAppIDs,
             order: order,
+            names: names,
             country: country
         )
         self.title = title

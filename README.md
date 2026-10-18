@@ -3,7 +3,7 @@
 A Swift package that fetches all the apps of an App Store developer from the iTunes API, and renders them as a SwiftUI section for your settings screen.
 
 - Fetches every app of a developer with a single request to the public iTunes lookup API. No API key needed.
-- The app it runs in is left out automatically. Hide more apps by identifier, and pin the most important ones to the top. The rest are sorted by their last update, newest first.
+- The app it runs in is left out automatically. Hide more apps by identifier, and pin the most important ones to the top. The rest are sorted by their last update, newest first. Rename any app with your own title.
 - Caches the last successful response on disk. The cached apps are always shown first, then replaced with the network result.
 - A drop-in `Section` with one row per app: icon, name, version and last update date, and a **View** button that opens the App Store page without leaving your app on iOS, and opens its App Store link on macOS.
 - Translated into every language iOS supports, and adapts to Dynamic Type and VoiceOver.
@@ -29,7 +29,7 @@ targets: [
 
 Your developer ID is the number at the end of your developer page on the App Store, e.g. `https://apps.apple.com/us/developer/xavi-moll/id1355340766` → `1355340766`.
 
-App IDs (for hiding and sorting) are found the same way in each app's App Store URL: `https://apps.apple.com/us/app/later-save-links-read-later/id1507396839` → `1507396839`.
+App IDs (for hiding, sorting and renaming) are found the same way in each app's App Store URL: `https://apps.apple.com/us/app/later-save-links-read-later/id1507396839` → `1507396839`.
 
 ## Rendering the provided UI
 
@@ -47,7 +47,9 @@ struct SettingsView: View {
                 // Don't show Llitgi. The app this runs in is never shown.
                 hiddenAppIDs: [1355340767],
                 // Show Later first. The rest follow, most recently updated first.
-                order: [1507396839]
+                order: [1507396839],
+                // Show "Later" instead of its full App Store name.
+                names: [1507396839: "Later"]
             )
         }
     }
@@ -71,7 +73,7 @@ The default header, the **View** button and the VoiceOver strings ship translate
 
 iOS shows your whole app in one language, chosen among the languages **your app** supports. So the section is only translated into the languages your app is localized in. An app that only ships English shows the section in English, even on a device set to German.
 
-App names come from the App Store storefront set by `country`, not from the device language.
+App names come from the App Store storefront set by `country`, not from the device language. Names set in `names` are shown as you pass them.
 
 ## Fetching the data only
 
@@ -157,6 +159,7 @@ init(
     developerID: Int,
     hiddenAppIDs: Set<Int> = [],
     order: [Int] = [],
+    names: [Int: String] = [:],
     country: String = Locale.current.region?.identifier ?? "us",
     session: URLSession = .shared
 )
@@ -167,6 +170,7 @@ init(
 | `developerID` | The App Store identifier of the developer. |
 | `hiddenAppIDs` | Identifiers of the apps that are never returned. The app the client runs in is never returned either: it's matched by `Bundle.main.bundleIdentifier`, so you don't need to list it. |
 | `order` | Identifiers of the apps to return first, from most to least important. Apps not listed are sorted by `currentVersionReleaseDate`, newest first. |
+| `names` | Names to return instead of the App Store ones, keyed by app identifier. They replace `StoreApp.name`. Use `String(localized:)` to translate them. |
 | `country` | The two-letter code of the App Store storefront to fetch from. App names are localized for this storefront. Defaults to the region of the current locale. |
 | `session` | The URL session used for network requests. |
 
@@ -185,7 +189,7 @@ A `@MainActor` `@Observable` class that wraps a `MyOtherAppsClient` for SwiftUI.
 | Member | Description |
 | --- | --- |
 | `init(client: MyOtherAppsClient)` | Creates a model that uses the given client. |
-| `init(developerID:hiddenAppIDs:order:country:)` | Creates a model with a client configured with the given parameters. |
+| `init(developerID:hiddenAppIDs:order:names:country:)` | Creates a model with a client configured with the given parameters. |
 | `let client: MyOtherAppsClient` | The client used to fetch the apps. |
 | `private(set) var apps: [StoreApp]` | The apps to show. Starts with the cached apps. |
 | `private(set) var isLoading: Bool` | Whether a fetch is in progress. |
@@ -198,7 +202,7 @@ A SwiftUI `View` to use inside a `List` or `Form`.
 
 | Initializer | Description |
 | --- | --- |
-| `init(_ title: LocalizedStringKey? = nil, developerID: Int, hiddenAppIDs: Set<Int> = [], order: [Int] = [], country: String = …)` | Creates a section that fetches the apps of a developer, and fetches again whenever a parameter changes. Without a `title`, the header reads "More apps by" followed by the developer name, translated into the user's language. |
+| `init(_ title: LocalizedStringKey? = nil, developerID: Int, hiddenAppIDs: Set<Int> = [], order: [Int] = [], names: [Int: String] = [:], country: String = …)` | Creates a section that fetches the apps of a developer, and fetches again whenever a parameter changes. Without a `title`, the header reads "More apps by" followed by the developer name, translated into the user's language. |
 
 ### `StoreApp`
 
@@ -207,7 +211,7 @@ An app published on the App Store. `Identifiable`, `Hashable` and `Sendable`.
 | Property | Description |
 | --- | --- |
 | `id: Int` | The App Store identifier of the app. |
-| `name: String` | The name of the app, localized for the storefront it was fetched from. |
+| `name: String` | The name of the app, localized for the storefront it was fetched from, or the one set in `names`. |
 | `bundleID: String` | The bundle identifier of the app. |
 | `developerName: String` | The name of the developer, as shown on the App Store. |
 | `version: String` | The current version of the app. |

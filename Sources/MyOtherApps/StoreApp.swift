@@ -4,7 +4,8 @@ import Foundation
 public struct StoreApp: Identifiable, Hashable, Sendable {
     /// The App Store identifier of the app (the `trackId` in the iTunes API).
     public let id: Int
-    /// The name of the app, localized for the storefront it was fetched from.
+    /// The name of the app, localized for the storefront it was fetched from, or the one set in
+    /// ``MyOtherAppsClient/names``.
     public let name: String
     /// The bundle identifier of the app.
     public let bundleID: String
